@@ -79,6 +79,31 @@ router.get('/test', async function (req, res, next) {
   res.send({ profs: await Professor.find(), test: 1});
 })
 
+router.get('/orientations', async function (req, res, next) {
+  Orientacao.find({}, function(err, professors) {
+    res.send(professors.professor);
+  });
+  // res.send({ orientations: await Orientacao.find(), test: 1});
+})
+
+router.get('/orientacao', async function(req, res, next) {
+  if (req.session && req.session.login) {
+    res.render('orientacao', {
+      page:'orientacao',
+      orientacao: await Orientacao.find(),
+      professors: await Professor.find(),
+      user: req.session.login
+    });
+    return ;
+  }
+  res.render('login', {page:'Login', menuId:'login'});
+});
+
+router.post('/addorientacao', async (req, res, next) => {
+  const ori = new Orientacao(req.body);
+  await ori.save();
+  res.redirect('/orientacao');
+});
 
 router.get('/logout', function(req, res, next) {
   if (req.session) {

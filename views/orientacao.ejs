@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include partials/head %>
+</head>
+<body class="bg-light">
+  <% include partials/menu %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h4 class="mb-3">Cadastro de Orientações</h4>
+        <form method="post" action="/addorientacao" class="needs-validation" novalidate>
+          <div class="row">
+            <div class="col-md mb-3">
+              <label for="name">Nome do Orientando</label>
+              <input pattern="[a-zA-Z]+" required type="text" class="form-control" name="aluno" id="name">
+              <!-- <div class="invalid-feedback">
+                Por favor, digite o nome do Orientando.
+              </div> -->
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="titulo">Título do Projeto Homologado</label>
+            <input type="text" class="form-control" name="titulo" id="titulo" placeholder="" required>
+            <div class="invalid-feedback">
+              Por favor digite o título do projeto.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="professor">Professor</label>
+            <select class="custom-select d-block w-100" name="professor" id="professor" required>
+              <option value="">Escolha...</option>
+              <% professors.forEach(function(professor) { %>
+                  <option value="<%= professor._id %>"><%= professor.nome %></option>
+              <% }); %>
+            </select>
+            <div class="invalid-feedback">
+              Por favor, escolha um professor
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Aluno</th>
+            <th scope="col">Título</th>
+            <th scope="col">Professor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% orientacao.forEach(function(orienta) { %>
+            <tr>
+              <td><%= orienta.aluno %></td>
+              <td><%= orienta.titulo %></td>
+              <td><%= orienta.professor.nome %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <% include partials/script %>
+
+  </body>
+  </html>
