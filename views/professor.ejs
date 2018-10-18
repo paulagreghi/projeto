@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include partials/head %>
+</head>
+<body class="bg-light">
+  <% include partials/menu %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h4 class="mb-3">Cadastro de Professores</h4>
+        <form action="/addprofessor" method="post" class="needs-validation" novalidate>
+          <div class="row">
+            <div class="col-md mb-3">
+              <label for="firstName">Nome</label>
+              <input type="text" class="form-control" name="nome" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid name is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md mb-3">
+              <label for="departamento">Departamento</label>
+              <select class="custom-select d-block w-100" name="departamento" required>
+                <option value="">Escolha...</option>
+                <option>DACIN - Departamento Acadêmico de Ciências da Natureza</option>
+                <option>DACHS - Departamento Acadêmico de Ciências Humanas e Sociais</option>
+                <option>DACOM - Departamento Acadêmico de Computação</option>
+                <option>DAELE - Departamento Acadêmico de Elétrica</option>
+                <option>DAMEC - Departamento Acadêmico de Mecânica</option>
+              </select>
+            </div>
+          </div>
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Salvar</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Departamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% professors.forEach(function(professor) { %>
+            <tr>
+              <td><%= professor.nome %></td>
+              <td><%= professor.departamento %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <% include partials/script %>
+
+  </body>
+  </html>

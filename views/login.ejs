@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include partials/head %>
+</head>
+<body>
+
+  <form class="form-signin" action="/login" method="POST" accept-charset="utf-8">
+    <div class="text-center mb-4">
+      <img src="../images/ninja.png" alt="">
+       <h1 class="h3 mb-3 font-weight-normal"></h1>
+    </div>
+
+    <div class="form-label-group">
+      <input id="textNome" name="login" class="form-control" placeholder="Nome de usuário" required="" autofocus="" type="text">
+      <label for="textNome">Usuario</label>
+    </div>
+    <div class="form-label-group">
+      <input id="inputPassword" name="password" class="form-control" placeholder="Senha" required="" type="password">
+      <label for="inputPassword">Senha</label>
+    </div>
+  </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+  </form>
+  <% include partials/script %>
+  </body>
+  </html>
